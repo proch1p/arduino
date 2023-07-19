@@ -1,0 +1,31 @@
+//pin trig di pin 8 arduino//
+const int TRIGPIN = 8;       
+//pin echo di pin 9 arduino//
+const int ECHOPIN = 9;
+long timer;
+int jarak;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(ECHOPIN, INPUT);
+  pinMode(TRIGPIN, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(TRIGPIN, LOW);                   
+  digitalWrite(TRIGPIN, HIGH);                  
+  digitalWrite(TRIGPIN, LOW);                   
+
+  timer = pulseIn(ECHOPIN, HIGH);
+  jarak = timer/58;
+  delay(1000);
+
+  // print hasil //
+  Serial.print("Jarak = ");
+  Serial.print(jarak);
+  Serial.print(" cm");
+  Serial.println();
+
+}
